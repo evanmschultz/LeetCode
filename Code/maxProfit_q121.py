@@ -55,3 +55,25 @@ def maxProfit2(prices):
         max_profit = max(max_profit, price - min_price)
 
     return max_profit
+
+
+def maxProfit3(prices):
+    # using pointers
+    left, right = 0, 1  # left = buy, right = sell
+    max_profit = 0
+
+    while right < len(prices):  # as long as the right pointer is in the array
+        profit = prices[right] - prices[left]
+
+        if profit > 0:  # checks if there is profit
+            # checks if profit is greater than previous max
+            max_profit = max(max_profit, profit)
+        else:
+            left = right  # moves left pointer to the right pointer's position if right value is less than or equal to left value
+
+        right += 1
+
+    return max_profit
+
+
+print(maxProfit3([1, 2, 3]))
