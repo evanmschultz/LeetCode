@@ -29,30 +29,40 @@
 
 
 class Solution(object):
-    def checkStraightLine(self, list):
-        if len(list) == 2:
-            return True
-
-        vertical = False
-        slope = 0
-        intercept = 0
-
-        if list[1][0] == list[0][0]:
-            vertical = True
-        else:
-            slope = (list[1][1] - list[0][1]) / (list[1][0] - list[0][0])
-            intercept = list[0][1] - slope * list[0][0]
-
-        for point in list:
-            if vertical:
-                if point[0] == list[0][0]:
-                    continue
-                else:
-                    return False
-            if 0 != slope * point[0] + intercept - point[1]:
+    # simply use the slope to check if they are co-linear
+    def checkStraightLine(self, coordinates):
+        (x0, y0), (x1, y1) = coordinates[:2]
+        for x, y in coordinates:
+            if (x1 - x0) * (y - y1) != (x - x1) * (y1 - y0):
                 return False
-
         return True
+
+
+# class Solution(object):
+#     def checkStraightLine(self, list):
+#         if len(list) == 2:
+#             return True
+
+#         vertical = False
+#         slope = 0
+#         intercept = 0
+
+#         if list[1][0] == list[0][0]:
+#             vertical = True
+#         else:
+#             slope = (list[1][1] - list[0][1]) / (list[1][0] - list[0][0])
+#             intercept = list[0][1] - slope * list[0][0]
+
+#         for point in list:
+#             if vertical:
+#                 if point[0] == list[0][0]:
+#                     continue
+#                 else:
+#                     return False
+#             if 0 != slope * point[0] + intercept - point[1]:
+#                 return False
+
+#         return True
 
 
 solution = Solution()
